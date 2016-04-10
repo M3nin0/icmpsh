@@ -1,15 +1,13 @@
 ## Background
 
-Sometimes, network administrators make the penetration tester's life harder. Some of them do use firewalls for what they are meant to, surprisingly!
-Allowing traffic only onto known machines, ports and services (ingress filtering) and setting strong egress access control lists is one of these cases. In such scenarios when you have owned a machine part of the internal network or the DMZ (e.g. in a Citrix breakout engagement or similar), it is not always trivial to get a reverse shell over TCP, not to consider a bind shell.
-
-However, what about UDP (commonly a DNS tunnel) or ICMP as the channel to get a reverse shell? ICMP is the focus on this tool.
+This code uses a big problem in ICMP, the creation of packages is up to the O.S , so it is easy to forge packets.
+I am changing this code since I'm using it as a vital part of a work of my technician Computer Networks.
+Thanks Nico and Bernardo. 
 
 ## Description
 
-icmpsh is a simple reverse ICMP shell with a win32 slave and a POSIX compatible master in C, Perl or Python. The main advantage over the other similar open source tools is that it does not require administrative privileges to run onto the target machine.
+The code was changed for me that it functions in a completely invisible way for the User . Creating the possibility of Phishing testing with this program .
 
-The tool is clean, easy and portable. The **slave (client) runs on the target Windows machine**, it is written in C and works on Windows only whereas the **master (server) can run on any platform on the attacker machine** as it has been implemented in C and Perl by [Nico Leidecker](http://www.leidecker.info/) and I have ported it to Python too, hence this GitHub fork.
 
 ## Features
 
@@ -41,7 +39,6 @@ If you miss doing that, you will receive information from the slave, but the sla
 The slave comes with a few command line options as outlined below:
 
 ```
--t host            host ip address to send ping requests to. This option is mandatory!
 
 -r                 send a single test icmp request containing the string "Test1234" and then quit. 
                    This is for testing the connection.
