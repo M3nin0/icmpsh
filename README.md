@@ -11,7 +11,6 @@ The code was changed for me that it functions in a completely invisible way for 
 
 ## Features
 
-* Open source software - primarily coded by Nico, forked by me.
 * Client/server architecture.
 * The master is portable across any platform that can run either C, Perl or Python code.
 * The target system has to be Windows because the slave runs on that platform only for now.
@@ -36,22 +35,22 @@ If you miss doing that, you will receive information from the slave, but the sla
 
 ### Running the slave
 
-The slave comes with a few command line options as outlined below:
+To edit the following options directly access the source code.
 
 ```
 
--r                 send a single test icmp request containing the string "Test1234" and then quit. 
+Send a single test icmp request containing the string "Test1234" and then quit. 
                    This is for testing the connection.
 
--d milliseconds    delay between requests in milliseconds 
+Delay between requests in milliseconds 
 
--o milliseconds    timeout of responses in milliseconds. If a response has not received in time, 
+Timeout of responses in milliseconds. If a response has not received in time, 
                    the slave will increase a counter of blanks. If that counter reaches a limit, the slave will quit.
                    The counter is set back to 0 if a response was received.
 
--b num             limit of blanks (unanswered icmp requests before quitting
+Limit of blanks (unanswered icmp requests before quitting
 
--s bytes           maximal data buffer size in bytes
+Maximal data buffer size in bytes
 ```
 
 In order to improve the speed, lower the delay (*-d*) between requests or increase the size (-s) of the data buffer.
