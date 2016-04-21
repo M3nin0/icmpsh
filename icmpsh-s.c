@@ -90,21 +90,6 @@ int spawn_shell(PROCESS_INFORMATION *pi, HANDLE *out_read, HANDLE *in_write)
 	return STATUS_OK;
 }
 
-void usage(char *path)
-{
-	printf("%s [options] -t target\n", path);
-	printf("options:\n");
-	printf("  -r                 send a single test icmp request and then quit\n");
-	printf("  -d milliseconds    delay between requests in milliseconds (default is %u)\n", DEFAULT_DELAY);
-	printf("  -o milliseconds    timeout in milliseconds\n");
-	printf("  -h                 this screen\n");
-	printf("  -b num             maximal number of blanks (unanswered icmp requests)\n");
-    	printf("                     before quitting\n");
-	printf("  -s bytes           maximal data buffer size in bytes (default is 64 bytes)\n\n", DEFAULT_MAX_DATA_SIZE);
-	printf("In order to improve the speed, lower the delay (-d) between requests or\n");
-    printf("increase the size (-s) of the data buffer\n");
-}
-
 void create_icmp_channel(HANDLE *icmp_chan)
 {
 	// create icmp file
@@ -219,44 +204,6 @@ int main(int argc, char **argv)
 	if (!load_deps()) {
 		printf("failed to load ICMP library\n");
 		return -1;
-	}
-
-	// parse command line options
-	for (opt = 1; opt < argc; opt++) {
-		if (argv[opt][0] == '-') {
-			switch(argv[opt][1]) {
-				case 'h':
-				    usage(*argv);
-					return 0;
-				case 'd':
-					if (opt + 1 < argc) {
-						delay = atol(argv[opt + 1]);
-					}
-					break;
-				case 'o':
-					if (opt + 1 < argc) {
-						timeout = atol(argv[opt + 1]);
-					}
-					break;
-				case 'r':
-					status = STATUS_SINGLE;
-					break;
-				case 'b':
-					if (opt + 1 < argc) {
-						max_blanks = atol(argv[opt + 1]);
-					}
-					break;
-				case 's':
-					if (opt + 1 < argc) {
-						max_data_size = atol(argv[opt + 1]);
-					}
-					break;
-				default:
-					printf("unrecognized option -%c\n", argv[1][0]);
-					usage(*argv);
-					return -1;
-			}
-		}
 	}
 
 	if (target ==  "0") {
