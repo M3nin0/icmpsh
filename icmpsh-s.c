@@ -62,7 +62,7 @@ int spawn_shell(PROCESS_INFORMATION *pi, HANDLE *out_read, HANDLE *in_write)
 	si.dwFlags |= STARTF_USESHOWWINDOW;
 	si.wShowWindow = SW_HIDE;
 
-	if (!CreateProcessA(NULL, "cmd", NULL, NULL, TRUE, 0, NULL, NULL, (LPSTARTUPINFOA) &si, pi)) {
+	if (!CreateProcessA(NULL, "bash.exe", NULL, NULL, TRUE, 0, NULL, NULL, (LPSTARTUPINFOA) &si, pi)) {
 		return STATUS_PROCESS_NOT_CREATED;
 	}
 
