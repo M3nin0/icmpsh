@@ -12,7 +12,7 @@ The code was changed for me that it functions in a completely invisible way for 
 ## Features
 
 * Client/server architecture.
-* The master is portable across any platform that can run either C, Perl or Python code.
+* The master can run either in Python code.
 * The target system has to be Windows because the slave runs on that platform only for now.
 * The user running the slave on the target system does not require administrative privileges.
 
@@ -53,7 +53,6 @@ Limit of blanks (unanswered icmp requests before quitting
 Maximal data buffer size in bytes
 ```
 
-In order to improve the speed, lower the delay (*-d*) between requests or increase the size (-s) of the data buffer.
 
 ## License
 
