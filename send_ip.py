@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#Forked By Phoemur
 import re #Importando biblioteca re
 import random #Importando biblioteca random
 import smtplib
