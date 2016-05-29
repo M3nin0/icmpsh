@@ -1,63 +1,38 @@
-## Background
+## Cenario
 
-This code uses a big problem in ICMP, the creation of packages is up to the O.S , so it is easy to forge packets.
-I am changing this code since I'm using it as a vital part of a work of my technician Computer Networks.
-Thanks Nico and Bernardo. 
+O ICMP não tem pacotes pré-definidos para envia-los, todos os pacotes são criados pelo S.O, o que permite que muitos pacotes sejam forjados. Utilido deste codigo para o desenvilvimento de meu TCC, que trata exatamente sobre como pequenos descuidos como este pode gerar grandes problemas.
+Agradecimentos ao Nico e ao Bernardo que inicialmente criaram este código fantastico.
 
-## Description
+## Descrição
 
-The code was changed for me that it functions in a completely invisible way for the User . Creating the possibility of Phishing testing with this program .
+Este código inicialmente necessitava da interação dos dois lados para iniciar a troca de pacotes ICMP, com pequenos ajustes fiz com que este se tornasse um backdoor, sendo capaz de se instalar no computador da vitima, enviar informações de endereço IP e se manter ativo ate a reinicialização do sistema.
+
+Tudo aqui mencionado foi desenvolido exclusivamente para o TCC de meu curso em Redes de Computadores.
 
 
-## Features
+## Uso
 
-* Client/server architecture.
-* The master can run either in Python code.
-* The target system has to be Windows because the slave runs on that platform only for now.
-* The user running the slave on the target system does not require administrative privileges.
+### Executando o Mestre
 
-## Usage
-
-### Running the master
-
-The master is straight forward to use. There are no extra libraries required for the C and Python versions. The Perl master however has the following dependencies:
+Para executar o mestre é necessario algumas bibliotecas, são elas:
 
 * IO::Socket
 * NetPacket::IP
 * NetPacket::ICMP
 
-When running the master, don't forget to disable ICMP replies by the OS. For example:
+E para que o mestre consiga responder aos chamados do escravo, é necessario desabilitar o não envio de respostas ICMP contido nos sistemas Linux
+
 ```
 sysctl -w net.ipv4.icmp_echo_ignore_all=1
 ```
 
-If you miss doing that, you will receive information from the slave, but the slave is unlikely to receive commands send from the master.
+Caso não execute o comando acima, não recebera as requisições do escravo
 
-### Running the slave
+### Executando o escravo
 
-To edit the following options directly access the source code.
+Para executar o escravo é necessario antes fazer uma pequena alteração
 
 ```
+Na linha 179 é necessario inserir seu endereço IP
 
-Send a single test icmp request containing the string "Test1234" and then quit. 
-                   This is for testing the connection.
-
-Delay between requests in milliseconds 
-
-Timeout of responses in milliseconds. If a response has not received in time, 
-                   the slave will increase a counter of blanks. If that counter reaches a limit, the slave will quit.
-                   The counter is set back to 0 if a response was received.
-
-Limit of blanks (unanswered icmp requests before quitting
-
-Maximal data buffer size in bytes
-```
-
-
-## License
-
-This source code is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+OBS: Caso esteja abaixo de um NAT é necessario utilizar algum programa que mantenha seu IP ativo na internet
