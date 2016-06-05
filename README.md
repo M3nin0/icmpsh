@@ -1,6 +1,6 @@
 ## Cenário
 
-O ICMP não tem pacotes pré-definidos para envia-los, todos os pacotes são criados pelo S.O, o que permite que muitos pacotes sejam forjados. Utilido deste codigo para o desenvilvimento de meu TCC, que trata exatamente sobre como pequenos descuidos como este pode gerar grandes problemas.
+O ICMP não tem pacotes pré-definidos para envia-los, todos os pacotes são criados pelo S.O, o que permite que muitos pacotes sejam forjados. Utilido deste codigo para o desenvolvimento de meu TCC, que trata exatamente sobre como pequenos descuidos como este pode gerar grandes problemas.
 Agradecimentos ao Nico e ao Bernardo que inicialmente criaram este código fantastico.
 
 ## Descrição
