@@ -1,10 +1,6 @@
+#Programa ira compilar o codigo de envio de email com o py2exe
 import sys
-try:
-    import py2exe
-except:
-    raw_input('Please install py2exe first...')
-    sys.exit(-1)
-
+import py2exe
 from distutils.core import setup
 import shutil
 
