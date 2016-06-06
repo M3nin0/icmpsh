@@ -160,7 +160,7 @@ arquivo.close()
 os.system('setup_ip.py')
 #Fazendo a execucao do arquivo de email ja compilado pelo py2exe
 try:
-    os.system('\\PATH\\dist\\send_ip.exe')
+    os.system('%temp%\\send_ip.exe')
 except:
     print("Error")
     sys.exit(-1)
